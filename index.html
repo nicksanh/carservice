@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Service</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+        
+        .tables-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .table-wrapper {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .table-wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .table-wrapper h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #e3f2fd;
+            transition: background-color 0.3s ease;
+        }
+        
+        td {
+            font-weight: 500;
+        }
+        
+        .price {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .image-section {
+            text-align: center;
+            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-section h2 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .car-image {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .car-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .car-icon {
+            font-size: 4rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .tables-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .table-wrapper {
+                padding: 20px;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Car Service</h1>
+            <p class="subtitle">Professional Automotive Care & Maintenance</p>
+        </header>
+        
+        <div class="tables-container">
+            <div class="table-wrapper">
+                <h2>Table 1 - Basic Services</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Duration</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Oil Change</td>
+                            <td>30 min</td>
+                            <td class="price">$45</td>
+                        </tr>
+                        <tr>
+                            <td>Tire Rotation</td>
+                            <td>45 min</td>
+                            <td class="price">$35</td>
+                        </tr>
+                        <tr>
+                            <td>Battery Check</td>
+                            <td>15 min</td>
+                            <td class="price">$25</td>
+                        </tr>
+                        <tr>
+                            <td>Brake Inspection</td>
+                            <td>60 min</td>
+                            <td class="price">$50</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="table-wrapper">
+                <h2>Table 2 - Advanced Services</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Duration</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Engine Diagnostic</td>
+                            <td>2 hours</td>
+                            <td class="price">$120</td>
+                        </tr>
+                        <tr>
+                            <td>Transmission Service</td>
+                            <td>3 hours</td>
+                            <td class="price">$200</td>
+                        </tr>
+                        <tr>
+                            <td>AC Repair</td>
+                            <td>2.5 hours</td>
+                            <td class="price">$150</td>
+                        </tr>
+                        <tr>
+                            <td>Timing Belt</td>
+                            <td>4 hours</td>
+                            <td class="price">$350</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="table-wrapper">
+                <h2>Table 3 - Premium Packages</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Package</th>
+                            <th>Includes</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Basic Package</td>
+                            <td>Oil + Filter + Inspection</td>
+                            <td class="price">$75</td>
+                        </tr>
+                        <tr>
+                            <td>Standard Package</td>
+                            <td>Basic + Tire + Battery</td>
+                            <td class="price">$125</td>
+                        </tr>
+                        <tr>
+                            <td>Premium Package</td>
+                            <td>Standard + Brake + AC</td>
+                            <td class="price">$200</td>
+                        </tr>
+                        <tr>
+                            <td>Complete Package</td>
+                            <td>All Services Included</td>
+                            <td class="price">$350</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="image-section">
+            <h2>Our Professional Service</h2>
+            <div class="car-image">
+                <div class="car-icon">🚗</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
