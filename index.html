@@ -157,6 +157,15 @@
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
+        .service-image {
+            display: block;
+            margin: 0 auto 20px auto; /* Centers and adds bottom margin */
+        }
+        
+        .service-image:last-of-type {
+            margin-bottom: 0; /* Remove margin from last image */
+        }
+
         
         @keyframes fadeInDown {
             from {
@@ -509,15 +518,12 @@
         </div>
         
          <div class="image-section">
-            <h2>Our Professional Service</h2>
-            <!-- Option 2: Use img tag instead of background -->
-            <img src="./linecontact.jpg" alt="Car Service" class="service-image" style="width: 100%; max-width: 600px; height: 300px; object-fit: cover; border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'")>
-            <img src="./whatsappcontact.jpg" alt="Car Service" class="service-image" style="width: 100%; max-width: 600px; height: 300px; object-fit: cover; border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'")>
+            <h2>Contact Information</h2>
+            <!-- Line Contact -->
+            <img src="./linecontact.jpg" alt="Line Contact" class="service-image" style="width: 100%; max-width: 600px; height: 300px; object-fit: contain; border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); transition: transform 0.3s ease; display: block; margin: 0 auto 20px auto;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
             
-            <!-- Option 3: Keep the original design as fallback -->
-            <div class="car-image">
-                <div class="car-icon">🚗</div>
-            </div>
+            <!-- WhatsApp Contact -->
+            <img src="./whatsappcontact.jpg" alt="WhatsApp Contact" class="service-image" style="width: 100%; max-width: 600px; height: 300px; object-fit: contain; border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); transition: transform 0.3s ease; display: block; margin: 0 auto;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         </div>
     </div>
 </body>
