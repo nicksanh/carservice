@@ -188,6 +188,59 @@
                 transform: translateY(0);
             }
         }
+
+        .routes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+    margin: 40px 0;
+}
+
+.route-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.route-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.route-card h2 {
+    color: #2c3e50;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.departure-time {
+    color: #e74c3c;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: center;
+    background: rgba(231, 76, 60, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    border-left: 4px solid #e74c3c;
+}
+
+.route-details {
+    color: #e74c3c;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.6;
+    background: rgba(231, 76, 60, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #e74c3c;
+}
+
+
+
         
         @media (max-width: 768px) {
             .container {
@@ -211,6 +264,10 @@
                 padding: 8px 10px;
                 font-size: 0.9rem;
             }
+
+
+
+            
         }
     </style>
 </head>
@@ -220,33 +277,46 @@
             <h1>ຂໍ້ມູນການເດີນລົດໂດຍສານນະຄອນຫລວງ ແລະ ໄທ | ข้อมูลการเดินรถโดยสารในนครหลวงและประเทศไทย | Bus Transportation Information in Vientiane and Thailand</h1>
             <p class="subtitle">ຍິນດີໃຫ້ບໍລິການທຸກທ່ານ | ยินดีให้บริการทุกท่าน | Happy to Serve You All</p>
         </header>
+
+
+        <div class="routes-container">
+    <div class="route-card">
+        <h2>ຕະຫລາດເຊົ້າ – ວັງວຽງ | ตลาดเช้า – วังเวียง | Morning Market – Vang Vieng</h2>
+        <div class="departure-time">Depart 09:00</div>
+    </div>
+    
+    <div class="route-card">
+        <h2>ວັງວຽງ – ຕະຫລາດເຊົ້າ | วังเวียง – ตลาดเช้า | Vang Vieng – Morning Market</h2>
+        <div class="departure-time">Depart 14:00</div>
+    </div>
+    
+    <div class="route-card">
+        <h2>ຕະຫລາດເຊົ້າ – ເມືອງເຟືອງ | ตลาดเช้า – เมืองเฟือง | Morning Market – Muang Feuang</h2>
+        <div class="departure-time">Depart 10:45</div>
+    </div>
+    
+    <div class="route-card">
+        <h2>ເມືອງເຟືອງ – ຕະຫລາດເຊົ້າ | เมืองเฟือง – ตลาดเช้า | Muang Feuang – Morning Market</h2>
+        <div class="departure-time">Depart 14:45</div>
+    </div>
+    
+    <div class="route-card">
+        <h2>Udonthani to Vangvieng</h2>
+        <div class="route-details">
+            Udonthani-08:30 → Udonthani International Airport-09:00 → Nong Khai–10:20 → Vangvieng
+        </div>
+    </div>
+    
+    <div class="route-card">
+        <h2>Vangvieng to Udonthani</h2>
+        <div class="route-details">
+            Vangvieng-10:00 → Nong Khai–13:00 → Udonthani International Airport-14:00
+        </div>
+    </div>
+</div>
+
         
         <div class="tables-container">
-
-            <div class="row">
-                <h2>ຕະຫລາດເຊົ້າ – ວັງວຽງ | ตลาดเช้า – วังเวียง | Morning Market – Vang Vieng <span style="color: red;">(Depart 09:00)</span></h2>
-            
-                <h2>ວັງວຽງ – ຕະຫລາດເຊົ້າ | วังเวียง – ตลาดเช้า | Vang Vieng – Morning Market <span style="color: red;">(Depart 14:00)</span></h2>
-            
-                <h2>ຕະຫລາດເຊົ້າ – ເມືອງເຟືອງ | ตลาดเช้า – เมืองเฟือง | Morning Market – Muang Feuang <span style="color: red;">(Depart 10:45)</span></h2>
-            
-                <h2>ເມືອງເຟືອງ – ຕະຫລາດເຊົ້າ | เมืองเฟือง – ตลาดเช้า | Muang Feuang – Morning Market <span style="color: red;">(Depart 14:45)</span></h2>
-
-                <h2>Udonthani to Vangvieng 
-                    <span style="color: red;">
-                        Udonthani-08:30 Udonthani International Airport-09:00 Nong Khai–10:20 Vangvieng
-                    </span>
-                </h2>
-                
-                <h2>Vangvieng to Udonthani 
-                    <span style="color: red;">
-                        Vangvieng-10:00   Nong Khai–13:00     Udonthani International Airport-14;00
-                    </span>
-                </h2>
-
-            </div>
-
-             
 
             <div class="table-wrapper">
                 <h2>ວຽງຈັນ – ອຸດອນ | เวียงจันทน์ – อุดรธานี | Vientiane – Udon Thani</h2>
