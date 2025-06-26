@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Service Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+        
+        .nav-links {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .nav-link {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .picture-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.8s ease-out;
+            overflow: hidden;
+        }
+        
+        .picture-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+        
+        .picture-title {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .picture-image {
+            width: 100%;
+            height: 250px;
+            border-radius: 10px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .picture-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .picture-placeholder {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .picture-placeholder:hover {
+            transform: scale(1.05);
+        }
+        
+        .picture-description {
+            margin-top: 15px;
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            text-align: center;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .gallery-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .picture-card {
+                padding: 15px;
+            }
+            
+            .nav-link {
+                display: block;
+                margin: 5px 0;
+            }
+        }
+        
+        /* Modal for enlarged images */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+        
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close:hover {
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ຮູບພາບບໍລິການ | รูปภาพบริการ | Service Gallery</h1>
+            <p class="subtitle">ຮູບພາບການບໍລິການຂອງພວກເຮົາ | รูปภาพการให้บริการของเรา | Our Service Photos</p>
+        </header>
+        
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">🏠 ກັບໜ້າຫຼັກ | กลับหน้าหลัก | Back to Home</a>
+            <a href="#contact" class="nav-link">📞 ຕິດຕໍ່ | ติดต่อ | Contact</a>
+        </div>
+        
+        <div class="gallery-container">
+            <div class="picture-card">
+                <h3 class="picture-title">ລົດໃຫຍ່ທັດສະນາຈອນ | รถบัสท่องเที่ยว | Tour Bus</h3>
+                <!-- Replace with your image: <img src="./bus1.jpg" alt="Tour Bus" class="picture-image" onclick="openModal(this)"> -->
+                <div class="picture-placeholder">image: <img src="./linecontact.jpg" alt="Tour Bus" class="picture-image" onclick="openModal(this)"></div>
+                <p class="picture-description">ລົດໃຫຍ່ທີ່ທັນສະໄໝສຳລັບການເດີນທາງທ່ອງທ່ຽວ | รถบัสทันสมัยสำหรับการท่องเที่ยว | Modern bus for tourism</p>
+            </div>
+            
+            <div class="picture-card">
+                <h3 class="picture-title">ລົດແວນສາມແຖວ | รถแวนสามแถว | Van Service</h3>
+                <!-- Replace with your image: <img src="./van1.jpg" alt="Van Service" class="picture-image" onclick="openModal(this)"> -->
+                <div class="picture-placeholder">🚐</div>
+                <p class="picture-description">ລົດແວນສະດວກສະບາຍສຳລັບກຸ່ມນ້ອຍ | รถแวนสะดวกสบายสำหรับกลุ่มเล็ก | Comfortable van for small groups</p>
+            </div>
+            
+            <div class="picture-card">
+                <h3 class="picture-title">ສະຖານີຮອບໍລິການ | สถานีให้บริการ | Service Station</h3>
+                <!-- Replace with your image: <img src="./station1.jpg" alt="Service Station" class="picture-image" onclick="openModal(this)"> -->
+                <div class="picture-placeholder">🏢</div>
+                <p class="picture-description">ສະຖານີບໍລິການທີ່ສະອາດແລະທັນສະໄໝ | สถานีบริการที่สะอาดและทันสมัย | Clean and modern service station</p>
+            </div>
+            
+            <div class="picture-card">
+                <h3 class="picture-title">ພະນັກງານບໍລິການ | พนักงานบริการ | Service Staff</h3>
+                <!-- Replace with your image: <img src="./staff1.jpg" alt="Service Staff" class="picture-image" onclick="openModal(this)"> -->
+                <div class="picture-placeholder">👥</div>
+                <p class="picture-description">ທີມງານມືອາຊີບພ້ອມໃຫ້ບໍລິການ | ทีมงานมืออาชีพพร้อมให้บริการ | Professional team ready to serve</p>
+            </div>
+            
+            <div class="picture-card">
+                <h3 class="picture-title">ເສັ້ນທາງວຽງຈັນ-ອຸດອນ | เส้นทางเวียงจันทน์-อุดร | Vientiane-Udon Route</h3>
+                <!-- Replace with your image: <img src="./route1.jpg" alt="Route Map" class="picture-image" onclick="openModal(this)"> -->
+                <div class="picture-placeholder">🗺️</div>
+                <p class="picture-description">ແຜນທີ່ເສັ້ນທາງຍ່ານຊາຍແດນ | แผนที่เส้นทางย่านชายแดน | Cross-border route map</p>
+            </div>
+            
+            <div class="picture-card">
+                <h3 class="picture-title">ລົດສ່ວນຕົວ VIP | รถส่วนตัว VIP | VIP Private Car</h3>
+                <!-- Replace with your image: <img src="./vip1.jpg" alt="VIP Car" class="picture-image" onclick="openModal(this)"> -->
+                <div class="picture-placeholder">🚗</div>
+                <p class="picture-description">ບໍລິການລົດສ່ວນຕົວແບບພິເສດ | บริการรถส่วนตัวแบบพิเศษ | Premium private car service</p>
+            </div>
+            
+            <div class="picture-card">
+                <h3 class="picture-title">ຈຸດຈອດລົດ | จุดจอดรถ | Parking Area</h3>
+                <!-- Replace with your image: <img src="./parking1.jpg" alt="Parking" class="picture-image" onclick="openModal(this)"> -->
+                <div class="picture-placeholder">🅿️</div>
+                <p class="picture-description">ບ່ອນຈອດລົດທີ່ປອດໄພແລະກວ້າງຂວາງ | ที่จอดรถที่ปลอดภัยและกว้างขวาง | Safe and spacious parking area</p>
+            </div>
+            
+            <div class="picture-card">
+                <h3 class="picture-title">ສາມາດຕິດຕໍ່ | ติดต่อเรา | Contact Us</h3>
+                <!-- Replace with your image: <img src="./contact1.jpg" alt="Contact Info" class="picture-image" onclick="openModal(this)"> -->
+                <div class="picture-placeholder">📱</div>
+                <p class="picture-description">ຂໍ້ມູນການຕິດຕໍ່ແລະຈອງບໍລິການ | ข้อมูลการติดต่อและจองบริการ | Contact information and booking</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal for enlarged images -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+    
+    <script>
+        function openModal(img) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'block';
+            modalImg.src = img.src;
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+        
+        // Close modal when clicking outside the image
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
